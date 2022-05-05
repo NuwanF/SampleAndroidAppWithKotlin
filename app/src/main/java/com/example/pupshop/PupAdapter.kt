@@ -14,9 +14,9 @@ class PupAdapter (
     private val breed: String) :
     RecyclerView.Adapter<PupAdapter.ViewHolder>() {
         class ViewHolder(view : View) : RecyclerView.ViewHolder(view) {
-            val txtCountry: TextView = view.findViewById(R.id.txtCountry)
-            val txtCases: TextView = view.findViewById(R.id.txtCases)
-            val imgFlag: ImageView = view.findViewById(R.id.imgFlag)
+            val txtPrice: TextView = view.findViewById(R.id.txtPrice)
+            val txtAge: TextView = view.findViewById(R.id.txtAge)
+            val imgPup: ImageView = view.findViewById(R.id.imgPup)
         }
 
         override fun getItemCount() = pups.size
@@ -31,15 +31,15 @@ class PupAdapter (
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             if(pups.get(position).breed == breed){
                 val thePup = pups.get(position)
-                holder.txtCountry.text = "Puppy: " + thePup.breed
-                holder.txtCases.text = "Age: " + thePup.age
+                holder.txtPrice.text = "Puppy: " + thePup.breed
+                holder.txtAge.text = "Age: " + thePup.age
                 //Picasso.get().load(thePup.imageUrl).into(holder.imgFlag)
 
                 var imgName = thePup.image.substring(0, thePup.image.length - 4)
                 val resourceId =
                     context.resources.getIdentifier("@drawable/" +
                             "pup" + imgName,"drawable", context.packageName)
-                holder.imgFlag.setImageResource(resourceId)
+                holder.imgPup.setImageResource(resourceId)
 
                 holder.itemView.setOnClickListener {
 //                val pupDetailIntent: Intent = Intent(context,

@@ -15,15 +15,18 @@
 
         <activity
             android:name=".MainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="PupShop: Search"
+            android:parentActivityName=".HomeActivity" />
         <activity
             android:name=".PupActivity"
             android:exported="false"
-            android:label="PupShop"
-            android:parentActivityName=".HomeActivity" />
+            android:label="PupShop: Pup Details"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".HomeActivity"
-            android:exported="true">
+            android:exported="true"
+            android:label="PupShop: Home">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
