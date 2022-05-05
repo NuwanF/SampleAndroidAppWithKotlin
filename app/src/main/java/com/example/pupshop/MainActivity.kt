@@ -8,7 +8,6 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import retrofit2.Call
 import retrofit2.Response
@@ -28,14 +27,6 @@ class MainActivity : AppCompatActivity() {
 
         txtSearch = findViewById<TextView>(R.id.txtSearch)
 
-//        //populate data source using getBooks to read books.json
-//        val pupList = Pup.getPups("pups.json", this)
-//
-//        //link to recycler view
-//        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-//        recyclerView.layoutManager = LinearLayoutManager(this)
-//        recyclerView.adapter = PupAdapter(this, pupList)
-
         //loadData("non")
     }
 
@@ -43,20 +34,20 @@ class MainActivity : AppCompatActivity() {
         val service  = ServiceBuilder.buildService(CountryService::class.java)
         val requestCall = service.getPup()
 
-        requestCall.enqueue(object : Callback<PupNew> {
-            override fun onResponse(call: Call<PupNew>,
-                                    response: Response<PupNew>
+        requestCall.enqueue(object : Callback<Pup> {
+            override fun onResponse(call: Call<Pup>,
+                                    response: Response<Pup>
             ) {
                 if (response.isSuccessful){
                     //process data
                     val pupList = response.body()!!
                     //if(breed != "non")
                         //pupList.dogs.filter { it.breed == breed }
-                    var pp: List<PupNew.Dog> = pupList.dogs.filter { it.breed == breed }
+                    var pp: List<Pup.Dog> = pupList.dogs.filter { it.breed == breed }
 
                     val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
                     recyclerView.layoutManager = GridLayoutManager(this@MainActivity,2)
-                    recyclerView.adapter = PupNewAdapter(this@MainActivity, pp, breed)
+                    recyclerView.adapter = PupAdapter(this@MainActivity, pp, breed)
 
                 }else{
                     //output alert
@@ -68,7 +59,7 @@ class MainActivity : AppCompatActivity() {
                         .show()
                 }
             }
-            override fun onFailure(call: Call<PupNew>, t: Throwable) {
+            override fun onFailure(call: Call<Pup>, t: Throwable) {
                 //process failure
                 AlertDialog.Builder(this@MainActivity)
                     .setTitle("API error")

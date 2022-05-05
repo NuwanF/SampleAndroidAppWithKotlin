@@ -5,5 +5,5 @@ import retrofit2.http.GET
 
 interface CountryService {
     @GET("dogsAPI.json")
-    fun getPup() : Call<PupNew>
+    fun getPup() : Call<Pup>
 }

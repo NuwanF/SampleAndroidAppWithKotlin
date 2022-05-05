@@ -1,8 +1,6 @@
 package com.example.pupshop
 
-import android.R
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
@@ -22,7 +20,7 @@ class Contact : AppCompatActivity(), OnMapReadyCallback {
         mMapView!!.onCreate(savedInstanceState)
         mMapView!!.getMapAsync(this)
 
-        val thePup: PupNew.Dog = intent?.extras?.getSerializable("pup") as PupNew.Dog
+        val thePup: Pup.Dog = intent?.extras?.getSerializable("pup") as Pup.Dog
     }
 
     override fun onResume() {

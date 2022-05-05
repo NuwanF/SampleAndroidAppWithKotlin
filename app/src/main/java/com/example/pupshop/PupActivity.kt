@@ -11,7 +11,7 @@ class PupActivity : AppCompatActivity() {
         setContentView(R.layout.activity_pup)
 
 
-        val thePup: PupNew.Dog = intent?.extras?.getSerializable("pup") as PupNew.Dog
+        val thePup: Pup.Dog = intent?.extras?.getSerializable("pup") as Pup.Dog
         //val thePup = intent?.extras?.getSerializable("pup") as String
 
         Toast.makeText(this, thePup.breed, Toast.LENGTH_SHORT).show()
