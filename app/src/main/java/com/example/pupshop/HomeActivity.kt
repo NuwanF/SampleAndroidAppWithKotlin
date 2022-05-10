@@ -11,12 +11,10 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        val button1 = findViewById<View>(R.id.btnSearch) as Button
-        button1.setOnClickListener { view ->
+        val btnSearch = findViewById<View>(R.id.btnSearch) as Button
+        btnSearch.setOnClickListener { view ->
             val intent = Intent(view.context, MainActivity::class.java)
             view.context.startActivity(intent)
         }
     }
-    
-    
 }

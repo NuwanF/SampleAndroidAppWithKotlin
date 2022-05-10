@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">PupShop</string>
+    <string name="breed">Breed</string>
+    <string name="description">Description</string>
 </resources>
