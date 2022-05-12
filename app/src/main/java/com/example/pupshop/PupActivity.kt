@@ -28,7 +28,7 @@ class PupActivity : AppCompatActivity() {
         val textDescription: TextView = findViewById(R.id.textDescription)
         val btnContact = findViewById<View>(R.id.btnContact) as Button
 
-        imgPup.setImageResource(R.drawable.pup2)
+        imgPup.setImageResource(R.drawable.matilda)
 //        var imgName = thePup.image.substring(0, thePup.image.length - 4)
 //        val resourceId =
 //            context.resources.getIdentifier("@drawable/" +
@@ -36,11 +36,11 @@ class PupActivity : AppCompatActivity() {
 //        imgPup.setImageResource(resourceId)
 
         txtBread.text = ": " + thePup.breed
-        txtPrice.text = "Price: " + thePup.breed
-        txtGender.text = "Gender: " + thePup.gender
-        txtAge.text = "Age: " + thePup.age
-        textVaccinated.text = "Vaccinated: " + thePup.vaccinated
-        textDescription.text = "Description: " + thePup.description
+        txtPrice.text = ": " + thePup.price
+        txtGender.text = ": " + thePup.gender
+        txtAge.text = ": " + thePup.age
+        textVaccinated.text = ": " + thePup.vaccinated
+        textDescription.text = ": " + thePup.description
 
         btnContact.setOnClickListener { view ->
             val pupDetailIntent: Intent = Intent(

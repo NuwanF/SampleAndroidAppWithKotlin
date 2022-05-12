@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
         txtSearch = findViewById<TextView>(R.id.txtSearch)
 
-        //loadData("non")
+        loadData("Any")
     }
 
     private fun loadData(breed:String) {
@@ -43,11 +43,10 @@ class MainActivity : AppCompatActivity() {
                     val pupList = response.body()!!
                     //if(breed != "non")
                         //pupList.dogs.filter { it.breed == breed }
-                    var pp: List<Pup.Dog> = pupList.dogs.filter { it.breed == breed }
-
+                    var filteredPups: List<Pup.Dog> = if(breed=="Any") pupList.dogs else pupList.dogs.filter { it.breed == breed }
                     val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
                     recyclerView.layoutManager = GridLayoutManager(this@MainActivity,2)
-                    recyclerView.adapter = PupAdapter(this@MainActivity, pp, breed)
+                    recyclerView.adapter = PupAdapter(this@MainActivity, filteredPups , breed)
 
                 }else{
                     //output alert
@@ -72,7 +71,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun dropDown(view: View){
-        var arrGuest = arrayOf("Beagle", "2 adults", "3 adults", "4 adults", "5 adults", "More than 5 adults")
+        var arrGuest = arrayOf("Any", "Beagle", "Boxer", "Pomeranian", "German Shepherd")
 
         alertDialog = AlertDialog.Builder(this)
         val rowList: View = layoutInflater.inflate(R.layout.my_row, null)

@@ -8,11 +8,14 @@ data class Pup(
     val dogs: List<Dog>
 ) {
     data class Dog(
+        val address: String,
         val age: String,
         val breed: String,
         val contact: String,
-        @SerializedName("Description")
+        val contactName: String,
+        @SerializedName("description")
         val description: String,
+        val email: String,
         val gender: String,
         @SerializedName("healthGuarantee?")
         val healthGuarantee: String,
@@ -25,10 +28,11 @@ data class Pup(
         @SerializedName("microchipped?")
         val microchipped: String,
         val originalUrl: String,
+        val price: String,
         val registeredBreeder: String,
         val type: String,
         val vaccinated: String,
         @SerializedName("wormedFlead?")
-        val wormedFlead: String
+        val wormedFlead: String,
     ): Serializable
 }

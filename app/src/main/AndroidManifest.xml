@@ -37,21 +37,22 @@
             android:name=".ContactActivity"
             android:exported="false"
             android:label="PupShop: Pup Contact"
-            android:parentActivityName=".PupActivity" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="false"
-            android:label="PupShop: Search"
-            android:parentActivityName=".HomeActivity" />
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".PupActivity"
             android:exported="false"
             android:label="PupShop: Pup Details"
             android:parentActivityName=".MainActivity" />
         <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:label="PupShop: Search"
+            android:parentActivityName=".HomeActivity" />
+        <activity
             android:name=".HomeActivity"
             android:exported="true"
-            android:label="PupShop: Home">
+            android:label="PupShop: Home"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

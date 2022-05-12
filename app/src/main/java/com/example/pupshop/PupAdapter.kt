@@ -32,34 +32,35 @@ class PupAdapter (
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        if (pups.get(position).breed == breed) {
-            val thePup = pups.get(position)
-            holder.txtPrice.text = "Puppy: " + thePup.breed
-            holder.txtAge.text = "Age: " + thePup.age
-            //Picasso.get().load(thePup.imageUrl).into(holder.imgFlag)
+//        if (pups.get(position).breed == breed) {
+//
+//        }
+        val thePup = pups.get(position)
+        holder.txtPrice.text = "Price: " + thePup.price
+        holder.txtAge.text = "Age: " + thePup.age
+        //Picasso.get().load(thePup.imageUrl).into(holder.imgFlag)
 
-            var imgName = thePup.image.substring(0, thePup.image.length - 4)
-            val resourceId =
-                context.resources.getIdentifier(
-                    "@drawable/" +
-                            "pup" + imgName, "drawable", context.packageName
-                )
-            holder.imgPup.setImageResource(resourceId)
+        var imgName = thePup.image.substring(0, thePup.image.length - 4)
+        val resourceId =
+            context.resources.getIdentifier(
+                "@drawable/" +
+                        "pup" + imgName, "drawable", context.packageName
+            )
+        holder.imgPup.setImageResource(resourceId)
 
-            holder.itemView.setOnClickListener {
+        holder.itemView.setOnClickListener {
 //                val pupDetailIntent: Intent = Intent(context,
 //                    PupActivity::class.java).apply {
 //                    putExtra("pup",Pup)
 //                }
-                val pupDetailIntent: Intent = Intent(
-                    context,
-                    PupActivity::class.java
-                ).apply {
-                    putExtra("pup", thePup)
-                }
-
-                holder.itemView.context.startActivity(pupDetailIntent)
+            val pupDetailIntent: Intent = Intent(
+                context,
+                PupActivity::class.java
+            ).apply {
+                putExtra("pup", thePup)
             }
+
+            holder.itemView.context.startActivity(pupDetailIntent)
         }
 
     }

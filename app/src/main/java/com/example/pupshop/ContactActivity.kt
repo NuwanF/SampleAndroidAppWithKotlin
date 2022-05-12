@@ -16,16 +16,21 @@ class ContactActivity : AppCompatActivity() {
 
         val thePup: Pup.Dog = intent?.extras?.getSerializable("pup") as Pup.Dog
 
-        Toast.makeText(this, thePup.breed, Toast.LENGTH_SHORT).show()
-
+        val txtContactName: TextView = findViewById(R.id.txtContactName)
+        val txtCall: TextView = findViewById(R.id.txtCall)
+        val txtEmail: TextView = findViewById(R.id.txtEmail)
+        val txtAddress: TextView = findViewById(R.id.txtAddress)
         val btnCallNumber: Button = findViewById(R.id.btnCallNumber)
-        btnCallNumber.setOnClickListener {
-            val txtCallNumber: TextView = findViewById(R.id.textContact)
-            val number: String = txtCallNumber.text.toString()
 
+        txtContactName.text = ": " + thePup.contactName
+        txtCall.text = ": " + thePup.contact
+        txtEmail.text = ": " + thePup.email
+        txtAddress.text = thePup.address
+
+        btnCallNumber.setOnClickListener {
             val intent: Intent = Intent().apply {
                 action = Intent.ACTION_DIAL
-                data = Uri.parse("tel:" + number) }
+                data = Uri.parse("tel:" + txtCall.text.toString()) }
             startActivity(intent)
         }
 
