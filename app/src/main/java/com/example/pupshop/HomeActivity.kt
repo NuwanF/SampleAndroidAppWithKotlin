@@ -13,7 +13,7 @@ class HomeActivity : AppCompatActivity() {
 
         val btnSearch = findViewById<View>(R.id.btnSearch) as Button
         btnSearch.setOnClickListener { view ->
-            val intent = Intent(view.context, MainActivity::class.java)
+            val intent = Intent(view.context, SearchActivity::class.java)
             view.context.startActivity(intent)
         }
     }

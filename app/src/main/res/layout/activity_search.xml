@@ -7,23 +7,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="10dp"
-    tools:context=".MainActivity">
-
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:id="@+id/recyclerView"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:scrollbars="vertical"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"/>-->
-
+    tools:context=".SearchActivity">
 
     <TextView
         android:id="@+id/txtSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Select Your Bread"
+        android:textColor="@color/black"
         android:paddingBottom="10dp"
         android:onClick="dropDown"
         android:background="@drawable/border"/>

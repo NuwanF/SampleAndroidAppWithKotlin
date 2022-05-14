@@ -7,7 +7,6 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 
 class PupActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,32 +14,29 @@ class PupActivity : AppCompatActivity() {
         setContentView(R.layout.activity_pup)
 
         val thePup: Pup.Dog = intent?.extras?.getSerializable("pup") as Pup.Dog
-        //val thePup = intent?.extras?.getSerializable("pup") as String
-
-        Toast.makeText(this, thePup.breed, Toast.LENGTH_SHORT).show()
 
         val imgPup: ImageView = findViewById(R.id.imgPup)
         val txtBread: TextView = findViewById(R.id.txtBread)
         val txtPrice: TextView = findViewById(R.id.txtPrice)
         val txtGender: TextView = findViewById(R.id.txtGender)
         val txtAge: TextView = findViewById(R.id.txtAge)
-        val textVaccinated: TextView = findViewById(R.id.textVaccinated)
-        val textDescription: TextView = findViewById(R.id.textDescription)
+        val txtVaccinated: TextView = findViewById(R.id.txtVaccinated)
+        val txtDescription: TextView = findViewById(R.id.txtDescription)
         val btnContact = findViewById<View>(R.id.btnContact) as Button
 
-        imgPup.setImageResource(R.drawable.matilda)
-//        var imgName = thePup.image.substring(0, thePup.image.length - 4)
-//        val resourceId =
-//            context.resources.getIdentifier("@drawable/" +
-//                    "pup" + imgName,"drawable", context.packageName)
-//        imgPup.setImageResource(resourceId)
-
+        var imgName = thePup.image.substring(0, thePup.image.length - 4)
+        val resourceId =
+            resources.getIdentifier(
+                "@drawable/" +
+                        "pup" + imgName, "drawable", packageName
+            )
+        imgPup.setImageResource(resourceId)
         txtBread.text = ": " + thePup.breed
         txtPrice.text = ": " + thePup.price
         txtGender.text = ": " + thePup.gender
         txtAge.text = ": " + thePup.age
-        textVaccinated.text = ": " + thePup.vaccinated
-        textDescription.text = ": " + thePup.description
+        txtVaccinated.text = ": " + thePup.vaccinated
+        txtDescription.text = ": " + thePup.description
 
         btnContact.setOnClickListener { view ->
             val pupDetailIntent: Intent = Intent(
@@ -51,8 +47,5 @@ class PupActivity : AppCompatActivity() {
             }
             view.context.startActivity(pupDetailIntent)
         }
-
-
-
     }
 }

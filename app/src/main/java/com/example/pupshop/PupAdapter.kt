@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class PupAdapter (
-    private val context: MainActivity,
+    private val context: SearchActivity,
     private val pups: List<Pup.Dog>,
     private val breed: String) :
     RecyclerView.Adapter<PupAdapter.ViewHolder>() {
@@ -32,13 +32,9 @@ class PupAdapter (
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-//        if (pups.get(position).breed == breed) {
-//
-//        }
         val thePup = pups.get(position)
         holder.txtPrice.text = "Price: " + thePup.price
         holder.txtAge.text = "Age: " + thePup.age
-        //Picasso.get().load(thePup.imageUrl).into(holder.imgFlag)
 
         var imgName = thePup.image.substring(0, thePup.image.length - 4)
         val resourceId =
@@ -49,19 +45,13 @@ class PupAdapter (
         holder.imgPup.setImageResource(resourceId)
 
         holder.itemView.setOnClickListener {
-//                val pupDetailIntent: Intent = Intent(context,
-//                    PupActivity::class.java).apply {
-//                    putExtra("pup",Pup)
-//                }
             val pupDetailIntent: Intent = Intent(
                 context,
                 PupActivity::class.java
             ).apply {
                 putExtra("pup", thePup)
             }
-
             holder.itemView.context.startActivity(pupDetailIntent)
         }
-
     }
 }

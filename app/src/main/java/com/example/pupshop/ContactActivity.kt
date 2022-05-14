@@ -34,15 +34,8 @@ class ContactActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-
-
-        // Initialize fragment
-        // Initialize fragment
         val fragment: Fragment = MapFragment.newInstance(thePup.lat.toDouble(), thePup.lon.toDouble())
-        // Open fragment
 
-
-        // Open fragment
         supportFragmentManager
             .beginTransaction().replace(R.id.frame_layout, fragment)
             .commit()

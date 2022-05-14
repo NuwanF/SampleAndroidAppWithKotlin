@@ -19,11 +19,11 @@ lateinit var adapter: ArrayAdapter<String>
 lateinit var dialog: AlertDialog
 lateinit var txtSearch: TextView
 
-class MainActivity : AppCompatActivity() {
+class SearchActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_search)
 
         txtSearch = findViewById<TextView>(R.id.txtSearch)
 
@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadData(breed:String) {
-        val service  = ServiceBuilder.buildService(CountryService::class.java)
+        val service  = ServiceBuilder.buildService(PupService::class.java)
         val requestCall = service.getPup()
 
         requestCall.enqueue(object : Callback<Pup> {
@@ -39,18 +39,14 @@ class MainActivity : AppCompatActivity() {
                                     response: Response<Pup>
             ) {
                 if (response.isSuccessful){
-                    //process data
                     val pupList = response.body()!!
-                    //if(breed != "non")
-                        //pupList.dogs.filter { it.breed == breed }
                     var filteredPups: List<Pup.Dog> = if(breed=="Any") pupList.dogs else pupList.dogs.filter { it.breed == breed }
                     val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
-                    recyclerView.layoutManager = GridLayoutManager(this@MainActivity,2)
-                    recyclerView.adapter = PupAdapter(this@MainActivity, filteredPups , breed)
+                    recyclerView.layoutManager = GridLayoutManager(this@SearchActivity,2)
+                    recyclerView.adapter = PupAdapter(this@SearchActivity, filteredPups , breed)
 
                 }else{
-                    //output alert
-                    AlertDialog.Builder(this@MainActivity)
+                    AlertDialog.Builder(this@SearchActivity)
                         .setTitle("API error")
                         .setMessage("Response, but something went wrong ${response.message()}")
                         .setPositiveButton(android.R.string.ok) { _, _ -> }
@@ -59,8 +55,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             override fun onFailure(call: Call<Pup>, t: Throwable) {
-                //process failure
-                AlertDialog.Builder(this@MainActivity)
+                AlertDialog.Builder(this@SearchActivity)
                     .setTitle("API error")
                     .setMessage("No response, and something went wrong $t")
                     .setPositiveButton(android.R.string.ok) { _, _ -> }
@@ -70,15 +65,13 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    fun dropDown(view: View){
-        var arrGuest = arrayOf("Any", "Beagle", "Boxer", "Pomeranian", "German Shepherd")
+    fun dropDown(view: View) {
+        var arrBreed = arrayOf("Any", "Beagle", "Boxer", "Pomeranian", "German Shepherd")
 
         alertDialog = AlertDialog.Builder(this)
         val rowList: View = layoutInflater.inflate(R.layout.my_row, null)
         listView = rowList.findViewById(R.id.listView)
-
-           adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, arrGuest)
-
+        adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, arrBreed)
         listView.adapter = adapter
         adapter.notifyDataSetChanged()
         alertDialog.setView(rowList)
@@ -86,9 +79,8 @@ class MainActivity : AppCompatActivity() {
         dialog.show()
 
         listView.setOnItemClickListener { parent, view, position, id ->
-            txtSearch!!.text = arrGuest.get(position)
-            loadData(arrGuest.get(position).toString())
-
+            txtSearch!!.text = arrBreed.get(position)
+            loadData(arrBreed.get(position).toString())
             dialog.dismiss()
         }
     }
